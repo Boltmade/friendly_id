@@ -61,7 +61,7 @@ module FriendlyId
     # This method is generally only used internally by FriendlyId.
     # @return String
     def query_field
-      base.to_s
+      "name"
     end
 
     # The base column or method used by FriendlyId as the basis of a friendly id
