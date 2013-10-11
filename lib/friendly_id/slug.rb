@@ -3,7 +3,7 @@ module FriendlyId
   #
   # @see FriendlyId::History
   class Slug < ActiveRecord::Base
-    set_table_name "slugs"
+    self.table_name = "slugs"
 
     belongs_to :sluggable, :polymorphic => true
 
