@@ -91,7 +91,7 @@ method.
       end
 
       def slug_history_clause(id)
-        Slug.arel_table[:sluggable_type].eq(base_class.to_s).and(Slug.arel_table[:slug].eq(id))
+        Slug.arel_table[:sluggable_type].eq(base_class.to_s).and(Slug.arel_table[:name].eq(id))
       end
     end
 
@@ -112,15 +112,15 @@ method.
 
     def create_slug
       return unless friendly_id
-      return if slugs.first.try(:slug) == friendly_id
+      return if slugs.first.try(:name) == friendly_id
       # Allow reversion back to a previously used slug
-      relation = slugs.where(:slug => friendly_id)
+      relation = slugs.where(:name => friendly_id)
       if friendly_id_config.uses?(:scoped)
         relation = relation.where(:scope => serialized_scope)
       end
       relation.delete_all
       slugs.create! do |record|
-        record.slug = friendly_id
+        record.name = friendly_id
         record.scope = serialized_scope if friendly_id_config.uses?(:scoped)
       end
     end
