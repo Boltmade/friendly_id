@@ -13,7 +13,7 @@ module FriendlyId
           protect_friendly_id_attributes
 
           def slug_with_rails_3_2_patch
-            slug_without_rails_3_2_patch || slugs.first
+            slugs.first || slug_without_rails_3_2_patch
           end
 
           alias_method_chain :slug, :rails_3_2_patch
